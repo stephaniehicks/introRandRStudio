@@ -1,0 +1,19 @@
+1. Installing R
+
+You can download and install R from
+the Comprehensive R Archive Network (https://cran.r-project.org/)
+(also known as CRAN). It is relatively straightforward, 
+but if you need further help you can try the following resources: 
+
+* [Installing R on Windows](https://github.com/genomicsclass/windows#installing-r) 
+* [Installing R on Mac](http://youtu.be/Icawuhf0Yqo)
+* [Installing R on Ubuntu](http://cran.r-project.org/bin/linux/ubuntu/README)
+
+2. Installing RStudio
+
+The next step is to install RStudio (https://www.rstudio.com/home/), 
+a program for viewing and running R scripts. Technically you can 
+run all the code in the training without installing RStudio, but we highly 
+recommend installing RStudio for the training session. Instructions are here: 
+http://www.rstudio.com/products/rstudio/download/ and for
+Windows we have special instructions (https://github.com/genomicsclass/windows). 
