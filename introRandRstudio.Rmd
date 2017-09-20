@@ -15,9 +15,14 @@ library(tidyverse)
 library(gapminder)
 ```
 
+
 ## The R programming language
 
 <img src="https://kzzinsky.files.wordpress.com/2014/10/bert-ernie-r.jpg" align="middle" width="400">
+
+**To follow along and download the tutorial materials** go here:
+
+[https://github.com/stephaniehicks/introRandRStudio](https://github.com/stephaniehicks/introRandRStudio).  
 
 Although R is technically a programming language, it was 
 developed specifically for analyzing data. Hence, we
@@ -116,6 +121,19 @@ We can also use the equal sign `=` although here we try
 to stick to `<-` to make it very clear it is an 
 assignment and not logical statement.
 
+**Side story**: Historically, `<-` used to be the only option 
+when R was just created (and S before that). In fact, there used
+to be `<-` key on AT&T keyboards. But modern programming 
+languages often use `=` for assignment. Users found this troublesome 
+and complained that you have to type two characters instead of one, 
+so in 2001 R allowed `=` for assignment. 
+
+**Another side story**: John Chambers, Rick Becker, Trevor Hastie, Allan Wilks
+and others at Bell Labs created the S programming in the 1970s. 
+In the 1990s, Ross Ihaka and Robert Gentleman in New Zealand 
+created a new language called R which was modeled off of the S programming langauage, 
+except it was now open. 
+
 
 
 ## RStudio
@@ -129,6 +147,17 @@ development environment (IDE). It includes a console,
 syntax-highlighting editor and tools for plotting, history, 
 debugging and workspace management. For this tutorial 
 we will use RStudio. 
+
+There are two versions: a desktop version where the program is 
+run locally as a regular desktop application; and a server version, 
+which allows accessing RStudio using a web browser while it is 
+running on a remote Linux server. 
+
+**Side story**: RStudio was founded by JJ Alaire. Beta versions 
+started in Dec 2010 and the first full release was in Feb 2011. 
+The company itself is based here in Boston down at the water front, 
+but the [company employees](https://www.rstudio.com/about/) 
+live across the world. 
 
 ```{r out.width = "95%", echo = FALSE}
 knitr::include_graphics("images/RStudio.png")
@@ -152,6 +181,25 @@ but you can also work with what are called
 [**R Markdown** files](http://rmarkdown.rstudio.com) 
 which end in a `.Rmd` file format. 
 
+
+#### What is the Markdown language? 
+
+Markdown is a lightweight markup language with plain text formatting syntax. 
+It is designed so that it can be converted to HTML and many other formats. 
+
+```{r out.width = "95%", echo = FALSE}
+knitr::include_graphics("https://user.oc-static.com/upload/2016/09/26/1474883851524_Screenshot%202016-09-26%2011.57.15.png")
+```
+
+
+#### R Markdown: Combining R and Markdown lanagues
+
+```{r out.width = "95%", echo = FALSE}
+knitr::include_graphics("http://rmarkdown.rstudio.com/images/markdownChunk.png")
+```
+
+
+
 These are documents that create reproducible reports. 
 It integrates narrative text and code together and creates 
 elegantly formatted output (including HTML, PDF, MS Word, 
@@ -164,14 +212,6 @@ end with three backticks. For example, this tutorial was
 created in an R Markdown file and is being
 rendered as a shiny application. 
 
-```{r, eval=FALSE, echo = TRUE}
-## This is a code chunk
-
-x <- rnorm(100, mean=0, sd=1)
-hist(x)
-```
-
-
 You can also integrate latex code:  
 $$
     Y_{i}= 
@@ -183,7 +223,8 @@ $$
 
 If you have successfully installed R and RStudio, 
 you should be able to follow along with the rest 
-of this tutorial by running code yourself.  
+of this tutorial by running code yourself at 
+[https://github.com/stephaniehicks/introRandRStudio](https://github.com/stephaniehicks/introRandRStudio).  
 
 For help with learning about Markdown, you can click 
 on the **Markdown Quick Reference** in the Help menu in RStudio.  
@@ -203,7 +244,7 @@ analysis.
 
 Here is a cheatsheet from RStudio about base R: 
 
-<img src="https://www.rstudio.com/wp-content/uploads/2016/05/base-r.pdf" align="middle" width="1000">
+<img src="https://www.rstudio.com/wp-content/uploads/2016/05/base-r.pdf" align="middle" width="700">
 
 In the next few sections, we'll cover some basics about base R. 
 
@@ -241,7 +282,7 @@ large data set as this will print all rows and all
 columns in the R console. 
 
 ```{r faithful, exercise=TRUE}
-faithful
+
 ```
 
 We see there are two columns titled `eruptions` and
@@ -252,7 +293,7 @@ few rows of the data set, use the `head()` (or `tail()`)
 function, which returns the first few (or last) rows. 
 
 ```{r faithful-header, exercise=TRUE}
-head(faithful)
+
 ```
 
 If you want to see a summary of the structure 
@@ -260,7 +301,7 @@ If you want to see a summary of the structure
 the `str()` (or `dim()`) function. 
 
 ```{r faithful-str, exercise=TRUE}
-str(faithful)
+
 ```
 Here we see that this object is a `data.frame`. 
 These are one of the most widely used data types in R. 
@@ -277,10 +318,11 @@ inbetween:
 
 ```{r faithful-extract-elements, exercise=TRUE}
 ## extract element in 5th row and 2nd column
-faithful[5,2]
+
 
 ## extract element in 10th row and 1st column
-faithful[10,1]
+
+
 ```
 
 
@@ -310,14 +352,15 @@ This also returns a vector.
 To return a list of the column names, we use the 
 `colnames()` function:
 ```{r faithful-colnames, exercise=TRUE}
-colnames(faithful)
+
 ```
 
 Finally, we access elements from a 
-vector using the `[` and `]` symbols:
+vector using the `[` and `]` symbols. For example, 
+extract the second element in the eruptions column:
 
 ```{r faithful-colnames-element, exercise=TRUE}
-faithful$eruptions[2]
+
 ```
 
 
@@ -442,7 +485,8 @@ sessionInfo()
 Some packages are considered popular enough that they are 
 included with the base download. For example, the software 
 implementing the method of survival analysis are in the 
-`survival` package. To bring that those functions in the 
+[`survival` R package](https://cran.r-project.org/web/packages/survival/index.html). 
+To bring that those functions in the 
 `survival` R package to your current R session we type:
 
 ```{r package-survival, exercise=TRUE}
@@ -620,7 +664,7 @@ available for reading data. A Google search of
 "how do I import data into R?" gets us to the 
 function `read.table()`. 
 
-```{r,eval=FALSE, echo=TRUE}
+```{r readtable, exercise=TRUE}
 ?read.table
 ```
 
@@ -631,7 +675,7 @@ From the help file we see that we need that we need
 Other base functions to read data into R include `read.csv()` and
 `read.delim()`. 
 
-### Two main options to load data using base R
+### Three main options to load data using base R
 
 #### Option 1: Download file with your browser to your working directory
 
@@ -712,7 +756,8 @@ knitr::include_graphics("http://r4ds.had.co.nz/images/tidy-1.png")
 ```
 
 The table on the right is considered "messy" and the table 
-on the left is considered "tidy". 
+on the left is considered "tidy". Tidy data provides a 
+standard way of structuring a dataset. 
 
 ```{r out.width = "95%", echo = FALSE}
 knitr::include_graphics("http://r4ds.had.co.nz/images/tidy-9.png")
@@ -811,12 +856,18 @@ columns and filters rows, respectively.
 Select a set of columns: the year and population
 
 ```{r select-1, exercise=TRUE}
-select(gapminder, year, pop)
+head(gapminder, n=3) 
+
+head(select(gapminder, year, pop), n=3)
 ```
 
 In base R, this is equivalent to 
 ```{r select-2, exercise=TRUE}
-gapminder[, c("year", "pop")]
+head(gapminder[, c("year", "pop")], n=3)
+
+## or 
+head(gapminder[, c(3, 5)], n=3)
+
 ```
 
 `dplyr` is much more powerful though. 
@@ -858,7 +909,7 @@ largest population **in 2007**?
 First, we can filter the rows for years in 2007. 
 
 ```{r filter-1, exercise=TRUE}
-gapminder2007 <- filter(gapminder, year == 2007)
+filter(gapminder, year == 2007)
 ```
 
 Note: you can use the boolean operators 
@@ -868,7 +919,7 @@ logical tests.
 For example, if we wanted all the years except for 2007, 
 
 ```{r filter-2, exercise=TRUE}
-filter(gapminder, year != 2007)
+
 ```
 
 
@@ -913,31 +964,24 @@ gapminder %>%
     arrange(pop)
 ```
 
-Now, we will select three columns from `gapminder`, 
-arrange the rows by the population. 
+Now, we will select three columns (year, pop, country) 
+from `gapminder`, and arrange the rows by the population. 
 ```{r arrange-2, exercise=TRUE}
-gapminder %>% 
-    select(year, pop, country) %>%
-    arrange(pop)
+
 ```
 
 If you want to arrange the rows in the `pop` column
 in a descending order, use the `desc()` function. 
 
 ```{r arrange-3, exercise=TRUE}
-gapminder %>% 
-    select(year, pop, country) %>%
-    arrange(desc(pop))
+
 ```
 
 Same as above, except here we filter the rows 
 for only year 2007. 
 
 ```{r arrange-4, exercise=TRUE}
-gapminder %>% 
-    select(year, pop, country) %>%
-    arrange(desc(pop)) %>%
-    filter(year == 2007)
+
 ```
 
 Here we see the China, India and the United States 
@@ -991,15 +1035,50 @@ want to split the data frame by some variable
 data frames and then combine the output. 
 
 Say we wanted to calculate the max gdp
-for each country **and** order the max gdp in a 
-descending order. (hint: We expect a set of 
+for each country and the average life expectancy 
+for each country. (hint: We expect a set of 
 summary statistics for each level in `country`.)
 
 ```{r groupby-1, exercise=TRUE}
 gapminder %>% 
   mutate(gdp = pop * gdpPercap) %>% 
   group_by(country) %>% 
-  summarise(max_gdp = max(gdp)) %>% 
-  arrange(desc(max_gdp))
+  summarise(max_gdp = max(gdp),
+            mean_lifeExp = mean(lifeExp))
 ```
+
+
+Say we wanted to calculate the max gdp
+for each country **and** order the max gdp in a 
+descending order. 
+
+```{r groupby-2, exercise=TRUE}
+
+
+```
+
+Finally, to demonstrate the benefit of the "tidyverse", 
+it's super easy to "pipe" the output we just created into 
+another function that creates plots. 
+
+Here, the pacakge I'm using is the [ggplot2](http://ggplot2.tidyverse.org) 
+package. To learn more about it, check out [http://ggplot2.org](http://ggplot2.org). 
+
+```{r groupby-3, exercise=TRUE}
+gapminder %>% 
+  mutate(gdp = pop * gdpPercap) %>% 
+  group_by(country) %>% 
+  summarise(max_gdp = max(gdp), 
+            mean_lifeExp = mean(lifeExp)) %>% 
+  ggplot(aes(x=max_gdp, y = mean_lifeExp)) + 
+      geom_point() + scale_x_log10() 
+```
+
+You can even change the labels easily (e.g. `xlab()`, `ylab()`). Lots and lots of options.
+
+Here is a cheatsheet from RStudio about ggplot2: 
+
+<img src="https://www.rstudio.com/wp-content/uploads/2015/03/ggplot2-cheatsheet.pdf" align="middle" width="700">
+
+
 
